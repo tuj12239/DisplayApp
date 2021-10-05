@@ -1,7 +1,9 @@
 package edu.temple.displayapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,10 +17,14 @@ class SelectionActivity : AppCompatActivity() {
         val images = getImageArray()
 
         val gridView = findViewById<RecyclerView>(R.id.gridView)
-        val adapter = ImageAdapter(this, images, {})
+        val adapter = ImageAdapter(this, images)
 
         gridView.layoutManager = GridLayoutManager(this, 3)
         gridView.adapter = adapter
+
+    }
+
+    private fun launchDisplayAct(_imageclass: ImageClass) {
 
     }
 
