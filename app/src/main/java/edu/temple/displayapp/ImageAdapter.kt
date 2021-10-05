@@ -30,6 +30,8 @@ class ImageAdapter(val _context: Context, _images: Array<ImageClass>) : Recycler
         gridImage.setImageResource(images[position].resource)
         gridImage.setOnClickListener{
             val intent = Intent(context, DisplayActivity::class.java)
+            intent.putExtra("Name", images[position].label)
+            intent.putExtra("Resource", images[position].resource)
             context.startActivity(intent)
         }
     }
