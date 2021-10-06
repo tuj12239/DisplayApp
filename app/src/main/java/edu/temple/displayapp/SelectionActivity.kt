@@ -25,10 +25,6 @@ class SelectionActivity : AppCompatActivity() {
 
     }
 
-    private fun launchDisplayAct(_imageclass: ImageClass) {
-
-    }
-
     private fun getImageArray(): Array<ImageClass> {
 
         return arrayOf(
