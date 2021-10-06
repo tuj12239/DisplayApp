@@ -9,6 +9,7 @@ class DisplayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
+        setTitle(R.string.display_activity_name)
 
         val name: String? = intent.getStringExtra("Name")
         val resource: Int? = intent.getIntExtra("Resource", 0)

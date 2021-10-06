@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DisplayApp</string>
+    <string name="main_activity_name">Pick an Icon</string>
+    <string name="display_activity_name">You chose:</string>
 </resources>
