@@ -28,18 +28,18 @@ class SelectionActivity : AppCompatActivity() {
     private fun getImageArray(): Array<ImageClass> {
 
         return arrayOf(
-            ImageClass("Donphan", R.drawable.donphan),
-            ImageClass("Dunsparce", R.drawable.dunsparce),
-            ImageClass("Eevee", R.drawable.eevee),
-            ImageClass("Gengar", R.drawable.gengar),
-            ImageClass("Heracross", R.drawable.heracross),
-            ImageClass("Magikarp", R.drawable.magikarp),
-            ImageClass("Magnezone", R.drawable.magnezone),
-            ImageClass("Medicham", R.drawable.medicham),
-            ImageClass("Mudkip", R.drawable.mudkip),
-            ImageClass("Murkrow", R.drawable.murkrow),
-            ImageClass("Prinplup", R.drawable.prinplup),
-            ImageClass("Quagsire", R.drawable.quagsire)
+            ImageClass("Donphan", R.drawable.brazil),
+            ImageClass("Dunsparce", R.drawable.canada),
+            ImageClass("Eevee", R.drawable.france),
+            ImageClass("Gengar", R.drawable.germany),
+            ImageClass("Heracross", R.drawable.ireland),
+            ImageClass("Magikarp", R.drawable.japan),
+            ImageClass("Magnezone", R.drawable.mexico),
+            ImageClass("Medicham", R.drawable.phillippines),
+            ImageClass("Mudkip", R.drawable.southkorea),
+            ImageClass("Murkrow", R.drawable.spain),
+            ImageClass("Prinplup", R.drawable.unitedkingdom),
+            ImageClass("Quagsire", R.drawable.unitedstates)
         )
     }
 }
