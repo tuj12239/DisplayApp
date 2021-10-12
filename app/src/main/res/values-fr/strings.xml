@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">App. d\'affichage</string>
+    <string name="main_activity_name">Choisissez une icône</string>
+    <string name="display_activity_name">Vous avez choisi:</string>
+    <string-array name="flags">
+        <item>Brésil</item>
+        <item>Canada</item>
+        <item>France</item>
+        <item>Allemagne</item>
+        <item>Irlande</item>
+        <item>Japan</item>
+        <item>Mexique</item>
+        <item>Philippines</item>
+        <item>Corée du Sud</item>
+        <item>Espagne</item>
+        <item>Royaume-Uni</item>
+        <item>Etats-Unis</item>
+    </string-array>
+</resources>
