@@ -2,6 +2,7 @@ package edu.temple.displayapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,8 +10,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setTitle(R.string.main_activity_name)
 
-        val images = getImageArray()
-        val selectionFragment = SelectionFragment.newInstance(images)
+        val model: SharedViewModel by viewModels()
+        val selectionFragment = SelectionFragment.newInstance(getImageArray())
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragmentContainerView, selectionFragment)
