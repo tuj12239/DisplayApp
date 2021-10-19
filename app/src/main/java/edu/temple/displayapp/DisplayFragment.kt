@@ -8,35 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DisplayFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DisplayFragment : Fragment() {
     lateinit var layout: View
     private val viewModel: SharedViewModel by activityViewModels()
+    lateinit var label: TextView
+    lateinit var image: ImageView
 
     companion object {
         fun newInstance() = DisplayFragment()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val label = layout.findViewById<TextView>(R.id.imageName)
-        val image = layout.findViewById<ImageView>(R.id.imageView)
-
-        label.text = name
-        if (resource != null) {
-            image.setImageResource(resource)
-        }
     }
 
     override fun onCreateView(
@@ -46,5 +27,26 @@ class DisplayFragment : Fragment() {
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_display, container, false)
         return layout
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        label = layout.findViewById<TextView>(R.id.imageName)
+        image = layout.findViewById<ImageView>(R.id.imageView)
+
+
+        viewModel.getSelectedImage().observe(viewLifecycleOwner, Observer<ImageClass> {
+                image: ImageClass? ->
+            if (image != null) {
+                updateDisplay()
+            }
+        })
+    }
+
+    private fun updateDisplay() {
+        label.text = viewModel.getSelectedImage().value!!.label
+        image.setImageResource(viewModel.getSelectedImage().value!!.resource)
+
     }
 }

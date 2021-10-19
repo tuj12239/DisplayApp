@@ -1,15 +1,15 @@
 package edu.temple.displayapp
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.reflect.KFunction1
 
 
-class ImageAdapter(val _context: Context, _images: Array<ImageClass>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+class ImageAdapter(private val _context: Context, _images: Array<ImageClass>, private val vocl: KFunction1<Int, Unit>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     private val context = _context
     private val images = _images
@@ -28,13 +28,10 @@ class ImageAdapter(val _context: Context, _images: Array<ImageClass>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gridImage = holder.view.findViewById<ImageView>(R.id.gridImage)
         gridImage.setImageResource(images[position].resource)
-        /*
-        gridImage.setOnClickListener{
-            val intent = Intent(context, DisplayFragment::class.java)
-            intent.putExtra("Name", images[position].label)
-            intent.putExtra("Resource", images[position].resource)
-            context.startActivity(intent)
-        }*/
+
+        gridImage.setOnClickListener() {
+            vocl(position)
+        }
     }
 
     override fun getItemCount(): Int {
