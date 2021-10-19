@@ -2,23 +2,19 @@ package edu.temple.displayapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
-class SelectionActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setTitle(R.string.main_activity_name)
 
         val images = getImageArray()
+        val selectionFragment = SelectionFragment.newInstance(images)
 
-        val gridView = findViewById<RecyclerView>(R.id.gridView)
-        val adapter = ImageAdapter(this, images)
-
-        gridView.layoutManager = GridLayoutManager(this, 3)
-        gridView.adapter = adapter
-
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerView, selectionFragment)
+            .commit()
     }
 
     private fun getImageArray(): Array<ImageClass> {

@@ -28,12 +28,13 @@ class ImageAdapter(val _context: Context, _images: Array<ImageClass>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gridImage = holder.view.findViewById<ImageView>(R.id.gridImage)
         gridImage.setImageResource(images[position].resource)
+        /*
         gridImage.setOnClickListener{
-            val intent = Intent(context, DisplayActivity::class.java)
+            val intent = Intent(context, DisplayFragment::class.java)
             intent.putExtra("Name", images[position].label)
             intent.putExtra("Resource", images[position].resource)
             context.startActivity(intent)
-        }
+        }*/
     }
 
     override fun getItemCount(): Int {
