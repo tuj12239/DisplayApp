@@ -35,6 +35,7 @@ class SelectionFragment(val _images: Array<ImageClass>) : Fragment() {
         gridView.layoutManager = GridLayoutManager(requireContext(), 3)
         val adapter = ImageAdapter(requireContext(), images, ::updateModel)
         gridView.adapter = adapter
+        updateModel(0)
     }
 
     private fun updateModel(index: Int) {
