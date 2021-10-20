@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.reflect.KFunction1
 
 
-class ImageAdapter(private val _context: Context, _images: Array<ImageClass>, private val vocl: KFunction1<Int, Unit>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+class ImageAdapter(_context: Context, _images: Array<ImageClass>, _vocl: View.OnClickListener) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     private val context = _context
     private val images = _images
     private val inflater = LayoutInflater.from(context)
-
+    private val vocl = _vocl
 
     class ViewHolder(_view: View) : RecyclerView.ViewHolder(_view) {
         val view = _view
@@ -28,10 +28,7 @@ class ImageAdapter(private val _context: Context, _images: Array<ImageClass>, pr
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gridImage = holder.view.findViewById<ImageView>(R.id.gridImage)
         gridImage.setImageResource(images[position].resource)
-
-        gridImage.setOnClickListener() {
-            vocl(position)
-        }
+        gridImage.setOnClickListener(vocl)
     }
 
     override fun getItemCount(): Int {

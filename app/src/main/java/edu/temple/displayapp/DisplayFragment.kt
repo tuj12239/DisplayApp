@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 class DisplayFragment : Fragment() {
     lateinit var layout: View
-    private val viewModel: SharedViewModel by activityViewModels()
     lateinit var label: TextView
     lateinit var image: ImageView
 
@@ -23,7 +21,7 @@ class DisplayFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_display, container, false)
         return layout
@@ -32,21 +30,22 @@ class DisplayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        label = layout.findViewById<TextView>(R.id.imageName)
-        image = layout.findViewById<ImageView>(R.id.imageView)
+        label = layout.findViewById(R.id.imageName)
+        image = layout.findViewById(R.id.imageView)
 
-
-        viewModel.getSelectedImage().observe(viewLifecycleOwner, Observer<ImageClass> {
-                image: ImageClass? ->
-            if (image != null) {
-                updateDisplay()
-            }
-        })
+        ViewModelProvider(requireActivity())
+            .get(SharedViewModel::class.java)
+            .getSelectedImage()
+            .observe(viewLifecycleOwner, {updateDisplay()})
     }
 
     private fun updateDisplay() {
-        label.text = viewModel.getSelectedImage().value!!.label
-        image.setImageResource(viewModel.getSelectedImage().value!!.resource)
+        val imageClass = ViewModelProvider(requireActivity())
+                            .get(SharedViewModel::class.java)
+                            .getSelectedImage()
+
+        label.text = imageClass.value?.label
+        image.setImageResource(imageClass.value!!.resource)
 
     }
 }

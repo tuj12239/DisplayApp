@@ -2,9 +2,7 @@ package edu.temple.displayapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +10,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setTitle(R.string.main_activity_name)
 
-        val model: SharedViewModel by viewModels()
+        ViewModelProvider(this)
+            .get(SharedViewModel::class.java)
         val selectionFragment = SelectionFragment.newInstance(getImageArray())
         val displayFragment = DisplayFragment.newInstance()
 
